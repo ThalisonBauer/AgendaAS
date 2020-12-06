@@ -8,12 +8,19 @@ class TodoRepositoryMock extends Mock implements TodoRepository {}
 
 main() {
   final repository = TodoRepositoryMock();
-  final controller = HomeControler(repository);
+  final controller = HomeController(repository);
   test('Deve preencher variavel todo', () async {
-    when(repository.fetchTodos())
-        .thenAnswer((realInvocation) async => [TodoModel()]);
-
+    when(repository.fetchTodos()).thenAnswer((__) async => [TodoModel()]);
+    expect(controller.state, HomeState.start);
     await controller.start();
+    expect(controller.state, HomeState.success);
     expect(controller.todos.isNotEmpty, true);
+  });
+  test('Deve modificar o estado para error se a requisição falhar', () async {
+    when(repository.fetchTodos()).thenThrow(Exception());
+
+    expect(controller.state, HomeState.start);
+    await controller.start();
+    expect(controller.state, HomeState.error);
   });
 }
