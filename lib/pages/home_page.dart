@@ -19,7 +19,12 @@ class _HomePageState extends State<HomePage> {
           return Card(
             child: ListTile(
               onTap: () {
-                DetailsPage();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => DetailsPage(todo.name,
+                          todo.username, todo.email, todo.address, todo.phone)),
+                );
               },
               leading: Image.network(
                   'https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/batman_hero_avatar_comics-512.png'),

@@ -3,10 +3,10 @@ class TodoModel {
   String name;
   String username;
   String email;
-  Address address;
+  String address;
   String phone;
   String website;
-  Company company;
+  String company;
 
   TodoModel(
       {this.id,
@@ -23,12 +23,10 @@ class TodoModel {
     name = json['name'];
     username = json['username'];
     email = json['email'];
-    address =
-        json['address'] != null ? new Address.fromJson(json['address']) : null;
+    address = json['anddress'];
     phone = json['phone'];
     website = json['website'];
-    company =
-        json['company'] != null ? new Company.fromJson(json['company']) : null;
+    company = json['company'];
   }
 
   Map<String, dynamic> toJson() {
@@ -37,15 +35,10 @@ class TodoModel {
     data['name'] = this.name;
     data['username'] = this.username;
     data['email'] = this.email;
-    if (this.address != null) {
-      data['address'] = this.address.toJson();
-    }
+    data['address'] = this.address;
     data['phone'] = this.phone;
     data['website'] = this.website;
-    if (this.company != null) {
-      data['company'] = this.company.toJson();
-    }
-    return data;
+    data['company'] = this.company;
   }
 }
 
