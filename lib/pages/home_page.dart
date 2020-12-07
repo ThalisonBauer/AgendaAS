@@ -22,8 +22,9 @@ class _HomePageState extends State<HomePage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => DetailsPage(todo.name,
-                          todo.username, todo.email, todo.address, todo.phone)),
+                    builder: (context) => DetailsPage(
+                        todo.name, todo.username, todo.email, todo.phone),
+                  ),
                 );
               },
               leading: Image.network(
